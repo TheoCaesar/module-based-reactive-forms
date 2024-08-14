@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +25,18 @@ export class AppComponent {
       'gender': new FormControl(
         'male',
         Validators.required
-      )
+      ),
+      'hobbies': new FormArray([])
     })
+  }
+
+  get controls(){
+    return (this.signUpForm.get('hobbies') as FormArray).controls;
+  }
+
+  onAddHobby(){
+    const newCntrl = new FormControl(null, Validators.required);
+    (<FormArray>this.signUpForm.get('hobbies')).push(newCntrl);
   }
 
   onSubmit() {
