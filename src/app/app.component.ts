@@ -12,14 +12,16 @@ export class AppComponent {
 
   ngOnInit() {
     this.signUpForm = new FormGroup({
-      username: new FormControl(
+      userData: new FormGroup({
+         username: new FormControl(
         '',
         // Validators.required,
-      ),
-      'email': new FormControl(
-        null, 
-        [Validators.required,Validators.email] 
-      )        ,
+        ),
+        'email': new FormControl(
+          null, 
+          [Validators.required,Validators.email] 
+        )   
+      }),
       'gender': new FormControl(
         'male',
         Validators.required
