@@ -44,7 +44,7 @@ export class AppComponent {
     console.log(this.signUpForm)
   }
 
-  forbiddenNamesChecker(control: FormControl): {[s:string] : boolean}{
+  forbiddenNamesChecker(control: FormControl): {[s:string] : boolean} | null{
     return (this.forbiddenUsernames.indexOf(control.value) != -1) 
       ? {"usernameIsForbidden" : true} : null;
   }
