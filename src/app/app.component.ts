@@ -9,13 +9,14 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 export class AppComponent {
   genders = ['male', 'female'];
   signUpForm: FormGroup;
+  forbiddenUsernames = ['God', 'Satan']
 
   ngOnInit() {
     this.signUpForm = new FormGroup({
       userData: new FormGroup({
          username: new FormControl(
         '',
-        // Validators.required,
+        [Validators.required, this.forbiddenNamesChecker.bind(this)]
         ),
         'email': new FormControl(
           null, 
@@ -41,6 +42,11 @@ export class AppComponent {
 
   onSubmit() {
     console.log(this.signUpForm)
+  }
+
+  forbiddenNamesChecker(control: FormControl): {[s:string] : boolean}{
+    return (this.forbiddenUsernames.indexOf(control.value) != -1) 
+      ? {"usernameIsForbidden" : true} : null;
   }
   
 }
