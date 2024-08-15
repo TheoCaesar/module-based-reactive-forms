@@ -21,7 +21,7 @@ export class AppComponent {
         ),
         'email': new FormControl(
           null, 
-          [Validators.required, Validators.email, this.forbiddenEmails] 
+          [Validators.required, Validators.email, ] 
         )   
       }),
       'gender': new FormControl(
@@ -30,21 +30,23 @@ export class AppComponent {
       ),
       'hobbies': new FormArray([])
     })
+    this.signUpForm.valueChanges.subscribe(
+      (data)=>console.log(data))
   }
   
-  forbiddenEmails(control: FormControl): Promise<any> | Observable<any> {
+  // forbiddenEmails(control: FormControl): Promise<any> | Observable<any> {
     
-    const promiseData = new Promise<any>((resolve, reject) => {
-      setTimeout(() => {
-        if (control.value === 'test@test.com') {
-          resolve({'emailIsForbidden': true});
-        } else {
-          resolve(null);
-        }
-      }, 1500);
-    });
-    return promiseData;
-  }
+  //   const promiseData = new Promise<any>((resolve, reject) => {
+  //     setTimeout(() => {
+  //       if (control.value === 'test@test.com') {
+  //         resolve({'emailIsForbidden': true});
+  //       } else {
+  //         resolve(null);
+  //       }
+  //     }, 1500);
+  //   });
+  //   return promiseData;
+  // }
 
   get controls(){
     return (this.signUpForm.get('hobbies') as FormArray).controls;
