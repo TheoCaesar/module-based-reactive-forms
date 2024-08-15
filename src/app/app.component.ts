@@ -30,8 +30,9 @@ export class AppComponent {
       ),
       'hobbies': new FormArray([])
     })
-    this.signUpForm.valueChanges.subscribe(
-      (data)=>console.log(data))
+    this.signUpForm.statusChanges.subscribe(
+      (data)=>console.log(data));
+
   }
   
   // forbiddenEmails(control: FormControl): Promise<any> | Observable<any> {
