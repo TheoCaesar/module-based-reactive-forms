@@ -32,7 +32,12 @@ export class AppComponent {
     })
     this.signUpForm.statusChanges.subscribe(
       (data)=>console.log(data));
-
+      
+      this.signUpForm.patchValue({
+        userData: {
+          username: 'ariana',
+        }
+      });
   }
   
   // forbiddenEmails(control: FormControl): Promise<any> | Observable<any> {
@@ -59,7 +64,8 @@ export class AppComponent {
   }
 
   onSubmit() {
-    console.log(this.signUpForm)
+    console.log(this.signUpForm);
+    this.signUpForm.reset()
   }
 
   forbiddenNamesChecker(control: FormControl): {[s:string] : boolean} | null{
